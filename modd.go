@@ -190,12 +190,9 @@ func (mr *ModRunner) runOnChan(modchan chan *moddwatch.Mod, readyCallback func()
 		return err
 	}
 
-	fmt.Println("Watching", currentDir)
-
 	// FIXME: This takes a long time. We could start it in parallel with the
 	// first process run in a goroutine
 	watcher, err := moddwatch.Watch(currentDir, ipatts, []string{}, lullTime, modchan)
-
 	if err != nil {
 		return fmt.Errorf("Error watching: %s", err)
 	}
